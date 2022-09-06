@@ -1,5 +1,8 @@
 const optionsLoader = async () => {
-  return {};
+  return {
+    title: "Options",
+    description: "This is the options page",
+  };
 };
 
 export default optionsLoader;

@@ -1,24 +1,16 @@
 // Loaders
 import homepageLoader from "./theme/loaders/homepage";
 import blogLoader from "./theme/loaders/blog";
+// Types
+import { RoutesObj } from "./core/types/config";
 
-const templatesDir = "theme/templates";
+const templatesDir = "./theme/templates";
 
-const routes = [
+const routes: Array<RoutesObj> = [
   {
     path: "/",
     template: `${templatesDir}/home.liquid`,
-    loaders: [
-      {
-        loader: homepageLoader,
-        params: {},
-        name: "i",
-      },
-    ],
-  },
-  {
-    path: "/about",
-    template: `${templatesDir}/about.liquid`,
+    loaders: [homepageLoader],
   },
   {
     path: "/blog/:slug",

@@ -1,5 +1,8 @@
 const homepageLoader = async () => {
-  return {};
+  return {
+    title: "Homepage",
+    description: "This is the homepage",
+  };
 };
 
 export default homepageLoader;
