@@ -1,6 +1,6 @@
 # Static Site Generator
 
-This is a minimal, but very flexible and powerful static site generator built around Express and LiquidJS.
+This is a minimal, but very flexible and powerful static site generator that is built around Express and LiquidJS.
 
 ## Scripts
 
