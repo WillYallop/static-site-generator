@@ -17,6 +17,11 @@ app.use(morgan("dev"));
 // ROUTES
 config.routes.forEach((route: RoutesObj) => {
   app.get(route.path, async (req, res) => {
+    // TODO - add a check to see if the request route can be found in the paramTable lookup, if not, 404
+    // if (route.paramTable && typeof route.paramTable === "function") {
+    //     const paramTable = await route.paramTable();
+    // }
+
     res.send(await renderRoute(route, req.params));
   });
 });

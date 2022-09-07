@@ -1,7 +1,8 @@
 // Loaders
 import optionsLoader from "./site/loaders/options";
 import homepageLoader from "./site/loaders/homepage";
-import blogLoader from "./site/loaders/blog";
+import { blogLoader, blogParamLookup } from "./site/loaders/blog";
+// Param Table Lookups
 // Types
 import { GeneratorConfig, RoutesObj } from "./generator/types/config";
 
@@ -17,6 +18,7 @@ const routes: Array<RoutesObj> = [
     path: "/blog/:slug",
     template: `${templatesDir}/blog.liquid`,
     loaders: [blogLoader],
+    paramTable: blogParamLookup,
   },
 ];
 

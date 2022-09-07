@@ -33,13 +33,14 @@ const routes: Array<RoutesObj> = [
     path: "/blog/:slug",
     template: "site/templates/blog.liquid",
     loaders: [blogLoader],
+    paramTable: await blogParamLookup(),
   },
 ];
 ```
 
 ### Path
 
-The path represents where the page will be located on your site. The path value can also contain Express params, as seen in the above example of `/blog/:slug`. However, the use case of these differs from how you would typically use them in a standard Express app.
+The path represents where the page will be located on your site. The path value can also contain Express params, as seen in the above example of `/blog/:slug`.
 
 ### Template
 
@@ -49,23 +50,45 @@ The template value is a path to the liquid file you wish to use for this route. 
 
 The loaders key takes an array of functions. These loader functions are ran before building/serving the route, and the data returned from them is passed down into your Liquid template.
 
-This is still a work in progress. Loaders that belong to a route which contain a URL paramater in the path value, are expected to return an array of results. Each item in this array corrosponds to an individual page. The expected return value should look like this:
+### Param Table
+
+If the route's path has a paramater in it, then the paramTable key is required. This should include an array of objects that contains key value pairs for each paramater in the route's path. If you need to do a lookup to get these values, you can execute a function here. Else you could just statically write this data.
+
+In dev mode, if a route cant be matched against this, the page will 404. With the build script, we only generate files based on the results of this.
 
 ```typescript
-return [
-  {
-    paramater: {
-      slug: "blog-title-one",
+const blogParamTableLookup = async () => {
+  // query all blogs from your API, then return slug paramater values.
+  return [
+    {
+      slug: "blog-slug-1",
     },
-    data,
+    {
+      slug: "blog-slug-2",
+    },
+  ];
+};
+
+const routes: Array<RoutesObj> = [
+  {
+    path: "/blog/:slug",
+    template: "site/templates/blog.liquid",
+    loaders: [blogLoader],
+    paramTable: await blogParamTableLookup(),
   },
+  // OR
   {
-    paramater: {
-      slug: "blog-title-two",
-    },
-    data,
+    path: "/blog/:slug",
+    template: "site/templates/blog.liquid",
+    loaders: [blogLoader],
+    paramTable: [
+      {
+        slug: "blog-slug-1",
+      },
+      {
+        slug: "blog-slug-2",
+      },
+    ],
   },
 ];
 ```
-
-The paramater key contains an object that has values for each URL paramater that was defined in the route path value (above was `"/blog/:slug"`). The data value is what is passed down when rendering the Liquid templates.
