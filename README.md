@@ -1,5 +1,7 @@
 # Static Site Generator
 
+> This is intended as a boiletplate project
+
 This is a minimal, but very flexible and powerful static site generator that is built around Express and LiquidJS.
 
 ## Scripts
