@@ -20,6 +20,7 @@ config.routes.forEach((route: RoutesObj) => {
     res.send(await renderRoute(route, req.params));
   });
 });
+app.use("/", express.static(config.outputDir));
 
 // ------------------------------------
 // START SERVER

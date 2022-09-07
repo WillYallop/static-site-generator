@@ -6,6 +6,7 @@ import config from "../../config";
 // Util
 import buildLoaderObj from "./build-loader-obj";
 // Tags
+import registerAssetTag from "../tags/asset";
 // Types
 import { RoutesObj } from "../types/config";
 
@@ -23,9 +24,17 @@ const renderRoute = async (
   params?: Request["params"]
 ): Promise<string> => {
   const { template, loaders } = route;
-  const globalData = await buildLoaderObj(config.globalLoaders);
-  const routeData = merge(globalData, await buildLoaderObj(loaders, params));
-  return await engine.renderFile(template, routeData);
+
+  // register custom tags
+  registerAssetTag(engine, route.path);
+
+  return await engine.renderFile(
+    template,
+    merge(
+      await buildLoaderObj(config.globalLoaders),
+      await buildLoaderObj(loaders, params)
+    )
+  );
 };
 
 export default renderRoute;

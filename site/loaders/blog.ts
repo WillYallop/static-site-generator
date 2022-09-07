@@ -1,5 +1,5 @@
 // Types
-import { LoaderFunction } from "../../core/types/config";
+import { LoaderFunction } from "../../generator/types/config";
 
 const blogLoader: LoaderFunction = async (params) => {
   return {

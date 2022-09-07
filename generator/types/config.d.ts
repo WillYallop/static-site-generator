@@ -11,8 +11,7 @@ export interface RoutesObj {
 export interface GeneratorConfig {
   routes: Array<RoutesObj>;
   globalLoaders?: Array<LoaderFunction>;
-  staticDir: string;
   outputDir: string;
-  liquidRoot: string;
+  siteRoot: string;
   liquidViews: Array<string>;
 }
