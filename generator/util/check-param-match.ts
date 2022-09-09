@@ -1,7 +1,7 @@
 // Types
 import { RoutesObj } from "../types/config";
 
-// Checks wehter the requested express route slugs are found in a paramTable if the route has paramaters
+// Checks whether the requested express route slugs are found in a paramTable if the route has paramaters
 
 const checkParamMatch = async (
   route: RoutesObj,
