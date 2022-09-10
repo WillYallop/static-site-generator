@@ -12,13 +12,7 @@ export const infoParamLookup: ParamTableLookup = async () => {
       slug: "tags-and-filters",
     },
     {
-      slug: "loaders",
-    },
-    {
-      slug: "params",
-    },
-    {
-      slug: "paths",
+      slug: "routes",
     },
   ];
 };
@@ -51,24 +45,10 @@ export const infoLoader: LoaderFunction = async (params) => {
           "utf8"
         );
         break;
-      case "loaders":
-        infoContent.info.content.title = "Loaders";
+      case "routes":
+        infoContent.info.content.title = "Routes";
         infoContent.info.content.markdown = await fs.readFile(
-          path.resolve(__dirname, "../../core/markdown/loaders.md"),
-          "utf8"
-        );
-        break;
-      case "params":
-        infoContent.info.content.title = "Params";
-        infoContent.info.content.markdown = await fs.readFile(
-          path.resolve(__dirname, "../../core/markdown/params.md"),
-          "utf8"
-        );
-        break;
-      case "paths":
-        infoContent.info.content.title = "Paths";
-        infoContent.info.content.markdown = await fs.readFile(
-          path.resolve(__dirname, "../../core/markdown/paths.md"),
+          path.resolve(__dirname, "../../core/markdown/routes.md"),
           "utf8"
         );
         break;

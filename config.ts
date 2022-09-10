@@ -2,11 +2,10 @@
 import optionsLoader from "./site/loaders/options";
 import homepageLoader from "./site/loaders/homepage";
 import { infoLoader, infoParamLookup } from "./site/loaders/info";
-// Param Table Lookups
 // Types
 import { GeneratorConfig, RoutesObj } from "./core/types/config";
 
-const templatesDir = "site/views/templates";
+const templatesDir = "./site/views/templates";
 
 const routes: Array<RoutesObj> = [
   {

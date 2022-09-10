@@ -1,7 +1,9 @@
 // get the package.json file
 import packageJson from "../../package.json";
+// Types
+import { LoaderFunction } from "../../core/types/config";
 
-const optionsLoader = async () => {
+const optionsLoader: LoaderFunction = async (params) => {
   return {
     options: {
       version: packageJson.version,

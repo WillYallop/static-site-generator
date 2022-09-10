@@ -6,9 +6,9 @@ import config from "../../config";
 // Util
 import buildLoaderObj from "./build-loader-obj";
 // Tags
-import registerAssetTag from "../tags/asset";
 // Filters
 import registerMarkdownFilter from "../filters/markdown";
+import registerRelativeAssetFilter from "../filters/relative-asset";
 // Types
 import { RoutesObj } from "../types/config";
 
@@ -27,10 +27,9 @@ const renderRoute = async (
 ): Promise<string> => {
   const { template, loaders } = route;
 
-  // register custom tags
-  registerAssetTag(engine, route.path);
   // register custom filters
   registerMarkdownFilter(engine);
+  registerRelativeAssetFilter(engine, route.path);
 
   return await engine.renderFile(
     template,
