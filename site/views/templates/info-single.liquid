@@ -18,6 +18,9 @@
                         {{ info.content.title }}
                     </a>
                 </h2>
+                <div class="markdown">
+                    {{ info.content.markdown | markdown  }}
+                </div>
             </section>
             <footer class="page-con__footer">
                 <p>version {{ options.version }}</p>

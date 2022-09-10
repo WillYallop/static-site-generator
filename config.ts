@@ -4,7 +4,7 @@ import homepageLoader from "./site/loaders/homepage";
 import { infoLoader, infoParamLookup } from "./site/loaders/info";
 // Param Table Lookups
 // Types
-import { GeneratorConfig, RoutesObj } from "./generator/types/config";
+import { GeneratorConfig, RoutesObj } from "./core/types/config";
 
 const templatesDir = "site/views/templates";
 

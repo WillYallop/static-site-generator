@@ -7,6 +7,8 @@ import config from "../../config";
 import buildLoaderObj from "./build-loader-obj";
 // Tags
 import registerAssetTag from "../tags/asset";
+// Filters
+import registerMarkdownFilter from "../filters/markdown";
 // Types
 import { RoutesObj } from "../types/config";
 
@@ -27,6 +29,8 @@ const renderRoute = async (
 
   // register custom tags
   registerAssetTag(engine, route.path);
+  // register custom filters
+  registerMarkdownFilter(engine);
 
   return await engine.renderFile(
     template,
