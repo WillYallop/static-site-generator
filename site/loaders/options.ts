@@ -1,7 +1,21 @@
+// get the package.json file
+import packageJson from "../../package.json";
+
 const optionsLoader = async () => {
   return {
-    title: "Options",
-    description: "This is the options page",
+    options: {
+      version: packageJson.version,
+      menu: [
+        {
+          title: "Home",
+          link: "/",
+        },
+        {
+          title: "Blog",
+          link: "/blog",
+        },
+      ],
+    },
   };
 };
 

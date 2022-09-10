@@ -1,3 +1,145 @@
+// ---------------------------------------
+// Base
+:root {
+  --bg: #141414;
+  --bg-light: #232323;
+  --bg-dark: #0f0f0f;
+  --color: rgb(241, 241, 241);
+  --brand: #9dffa1;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  background: red;
+  background: var(--bg);
+  color: var(--color);
+  font-family: "Inter", sans-serif;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: 700;
+}
+h2 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+// ---------------------------------------
+// Nav root
+.nav-root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  border-bottom: 1px solid var(--bg-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  .highlight {
+    font-size: 32px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  ul {
+    list-style-type: none;
+    display: flex;
+    li {
+      margin-left: 20px;
+      a {
+        font-size: 18px;
+        font-weight: bold;
+        color: var(--color);
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+// ---------------------------------------
+// Page con
+.page-con {
+  padding: 100px 40px;
+  margin-top: 80px;
+  &__wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  &__header {
+    text-align: center;
+    h1 {
+      margin-bottom: 15px;
+    }
+    p {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+  &__main {
+    margin-top: 60px;
+    ul {
+      list-style-type: none;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      @media only screen and (max-width: 768px) {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+    &__row {
+      width: 100%;
+      border-radius: 5px;
+      border: 1px solid var(--bg-light);
+      padding: 15px;
+      transition: border 0.3s;
+      &:hover {
+        border: 1px solid var(--brand);
+      }
+
+      a {
+        text-decoration: none;
+        color: white;
+      }
+      h2 {
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+        svg {
+          height: 20px;
+          margin-left: 10px;
+          fill: white;
+        }
+      }
+      p {
+        font-size: 18px;
+      }
+    }
+  }
+  &__footer {
+    border-top: 1px solid var(--bg-light);
+    margin-top: 60px;
+    padding-top: 20px;
+    text-align: center;
+    p {
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+}
+
+// ---------------------------------------
+// Utility
+.highlight {
+  color: var(--brand);
+}
+.code-block {
+  background-color: var(--bg-light);
+  padding: 2px 5px;
+  border-radius: 3px;
 }

@@ -1,20 +1,20 @@
 // Types
 import { RoutesObj } from "../types/config";
 
-// Checks whether the requested express route slugs are found in a paramTable if the route has paramaters
+// Checks whether the requested express route slugs are found in a paramLookup if the route has paramaters
 
 const checkParamMatch = async (
   route: RoutesObj,
   reqParams: any
 ): Promise<boolean> => {
   let pass = true;
-  if (route.paramTable) {
+  if (route.paramLookup) {
     pass = false;
     let paramTableVals = [];
-    if (typeof route.paramTable === "function") {
-      paramTableVals = await route.paramTable();
+    if (typeof route.paramLookup === "function") {
+      paramTableVals = await route.paramLookup();
     } else {
-      paramTableVals = route.paramTable;
+      paramTableVals = route.paramLookup;
     }
     for (const property in reqParams) {
       for (let i = 0; i < paramTableVals.length; i++) {

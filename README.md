@@ -33,7 +33,7 @@ const routes: Array<RoutesObj> = [
     path: "/blog/:slug",
     template: "site/templates/blog.liquid",
     loaders: [blogLoader],
-    paramTable: await blogParamLookup(),
+    paramLookup: await blogParamLookup(),
   },
 ];
 ```
@@ -52,12 +52,12 @@ The loaders key takes an array of functions. These loader functions are ran befo
 
 ### Param Table
 
-If the route's path has a paramater in it, then the paramTable key is required. This should include an array of objects that contains key value pairs for each paramater in the route's path. If you need to do a lookup to get these values, you can execute a function here. Else you could just statically write this data.
+If the route's path has a paramater in it, then the paramLookup key is required. This should include an array of objects that contains key value pairs for each paramater in the route's path. If you need to do a lookup to get these values, you can execute a function here. Else you could just statically write this data.
 
 In dev mode, if a route cant be matched against this, the page will 404. With the build script, we only generate files based on the results of this.
 
 ```typescript
-const blogParamTableLookup = async () => {
+const blogparamLookupLookup = async () => {
   // query all blogs from your API, then return slug paramater values.
   return [
     {
@@ -74,14 +74,14 @@ const routes: Array<RoutesObj> = [
     path: "/blog/:slug",
     template: "site/templates/blog.liquid",
     loaders: [blogLoader],
-    paramTable: await blogParamTableLookup(),
+    paramLookup: await blogparamLookupLookup(),
   },
   // OR
   {
     path: "/blog/:slug",
     template: "site/templates/blog.liquid",
     loaders: [blogLoader],
-    paramTable: [
+    paramLookup: [
       {
         slug: "blog-slug-1",
       },

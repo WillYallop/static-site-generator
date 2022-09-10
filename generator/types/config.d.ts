@@ -8,7 +8,7 @@ export interface RoutesObj {
   path: string;
   template: string;
   loaders?: Array<LoaderFunction>;
-  paramTable?:
+  paramLookup?:
     | Array<{
         [key: string]: string;
       }>
@@ -20,5 +20,4 @@ export interface GeneratorConfig {
   globalLoaders?: Array<LoaderFunction>;
   outputDir: string;
   siteRoot: string;
-  liquidViews: Array<string>;
 }

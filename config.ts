@@ -1,12 +1,13 @@
 // Loaders
 import optionsLoader from "./site/loaders/options";
 import homepageLoader from "./site/loaders/homepage";
-import { blogLoader, blogParamLookup } from "./site/loaders/blog";
+import blogsLoader from "./site/loaders/blogs";
+import { blogLoader, blogParamLookup } from "./site/loaders/blog-single";
 // Param Table Lookups
 // Types
 import { GeneratorConfig, RoutesObj } from "./generator/types/config";
 
-const templatesDir = "site/templates";
+const templatesDir = "site/views/templates";
 
 const routes: Array<RoutesObj> = [
   {
@@ -15,10 +16,15 @@ const routes: Array<RoutesObj> = [
     loaders: [homepageLoader],
   },
   {
+    path: "/blog",
+    template: `${templatesDir}/blogs.liquid`,
+    loaders: [blogsLoader],
+  },
+  {
     path: "/blog/:slug",
-    template: `${templatesDir}/blog.liquid`,
+    template: `${templatesDir}/blog-single.liquid`,
     loaders: [blogLoader],
-    paramTable: blogParamLookup,
+    paramLookup: blogParamLookup,
   },
 ];
 
@@ -27,6 +33,5 @@ const config: GeneratorConfig = {
   globalLoaders: [optionsLoader],
   outputDir: "dist",
   siteRoot: "site",
-  liquidViews: [templatesDir],
 };
 export default config;

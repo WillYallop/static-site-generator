@@ -15,12 +15,12 @@ const buildRoutes = async () => {
   const routes = [];
   for await (const route of config.routes) {
     if (route) {
-      if (route.path.includes(":") && route.paramTable !== undefined) {
+      if (route.path.includes(":") && route.paramLookup !== undefined) {
         let paramTableResults = [];
         // set the paramtable results based on the paramtable type
-        if (typeof route.paramTable === "function")
-          paramTableResults = await route.paramTable();
-        else paramTableResults = route.paramTable;
+        if (typeof route.paramLookup === "function")
+          paramTableResults = await route.paramLookup();
+        else paramTableResults = route.paramLookup;
         // loop through the paramtable results and build the routes
         for await (const paramTableResult of paramTableResults) {
           const html = await minify(
