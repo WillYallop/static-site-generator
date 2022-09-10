@@ -14,18 +14,6 @@
     {% block head %} {% endblock %}
   </head>
   <body>
-    <nav class="nav-root">
-        <a href="/" class="highlight">
-            SSG
-        </a>
-        <ul>
-            {% for item in options.menu %}
-                <li>
-                    <a href="{{ item.link }}">{{ item.title }}</a>
-                </li>
-            {% endfor %}
-        </ul>
-    </nav>
     <main>{% block mainContent %} {% endblock %}</main>
   </body>
 </html>

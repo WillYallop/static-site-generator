@@ -5,6 +5,9 @@ const optionsLoader = async () => {
   return {
     options: {
       version: packageJson.version,
+      title: 'Welcome to <span class="highlight">SSG</span>',
+      subtitle:
+        'Get started by editing <span class="code-block">config.ts</span>',
       menu: [
         {
           title: "Home",

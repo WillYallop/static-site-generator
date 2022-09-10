@@ -30,43 +30,9 @@ h2 {
 }
 
 // ---------------------------------------
-// Nav root
-.nav-root {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  border-bottom: 1px solid var(--bg-light);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 40px;
-  .highlight {
-    font-size: 32px;
-    font-weight: 700;
-    text-decoration: none;
-  }
-  ul {
-    list-style-type: none;
-    display: flex;
-    li {
-      margin-left: 20px;
-      a {
-        font-size: 18px;
-        font-weight: bold;
-        color: var(--color);
-        text-decoration: none;
-      }
-    }
-  }
-}
-
-// ---------------------------------------
 // Page con
 .page-con {
   padding: 100px 40px;
-  margin-top: 80px;
   &__wrapper {
     max-width: 900px;
     margin: 0 auto;
@@ -96,15 +62,15 @@ h2 {
       width: 100%;
       border-radius: 5px;
       border: 1px solid var(--bg-light);
-      padding: 15px;
       transition: border 0.3s;
       &:hover {
         border: 1px solid var(--brand);
       }
-
       a {
+        display: block;
         text-decoration: none;
         color: white;
+        padding: 15px;
       }
       h2 {
         margin-bottom: 5px;
@@ -129,6 +95,24 @@ h2 {
     p {
       font-size: 14px;
       font-weight: 500;
+    }
+  }
+}
+
+// ---------------------------------------
+// Info
+.info-single {
+  h2 {
+    a {
+      display: flex;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      svg {
+        height: 20px;
+        fill: white;
+        margin-right: 10px;
+      }
     }
   }
 }
