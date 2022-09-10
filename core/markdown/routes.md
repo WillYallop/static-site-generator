@@ -20,14 +20,13 @@ A route is effectively a page. It takes in up to 4 parameters: a path, template,
 
 ### Path
 
-This is the value you would enter in your browser to visit the page. In dev mode, Express uses this to generate the routes, and on the build, this is used to generate the structure of your site. A standard path would look like this: ``/about-us``.
+This is the value you would enter in your browser to visit the page. In dev mode, Express uses this to generate the routes, and on the build script, this is used to generate the structure of your site. A standard path would look like this: ``/about-us``.
 
-In some cases, however, you may want a dynamic route that fetches different data based on a parameter in the path. You can define a parameter in your path like so ``/blogs/:slug`` (using a semi-colon). This parameter value is passed to your loader functions so you can use it to query blogs depending on the slug.
-
+In some cases, however, you may want a dynamic route that fetches different data based on a parameter in the path. You can define a parameter in your path like so ``/blogs/:slug`` (using a semi-colon). This parameter value is passed to your loader functions so you can use it to query blogs depending on the slug (in this example).
 
 ### Template
 
-The template key is used to define the Liquid file that the route should use.
+The template key is used to define the Liquid file that the route should use. It is relative to the root of the project.
 
 ### Loaders
 
@@ -49,7 +48,7 @@ const optionsLoader: LoaderFunction = async (params) => {
 export default optionsLoader;
 ```
 
-In your liquid you can use the following data like so:
+In your liquid template, you can use the following data like so:
 
 ```liquid
 <div>
@@ -62,7 +61,7 @@ In your liquid you can use the following data like so:
 
 If you have a parameter in your route.path value (``/blogs/:slug``), then you must include this in the route. It is responsible for supplying all of the possible parameters for the route. The build script uses this so it knows what values to populate in the path parameters, and the dev script uses this to check if the page exists.
 
-This value can either take a function or an array. This function must always return an array of objects that contains the path parameters you have defined. For example, a path value like so ``/blogs/:slug`` would require a paramLookup value of the following:
+This value can either take a function or an array. This function must always return an array of objects that contains the path parameters you have defined in the path. For example, a path value like so ``/blogs/:slug`` would require a paramLookup value of the following:
 
 ```typescript
 type ParamTableLookup = () => Promise<Array<{ [key: string]: string }>>;
@@ -93,4 +92,4 @@ const routes: Array<RoutesObj> = [
 ];
 ```
 
-> IMPORTANT: Each object in the paramLookup array represents a page, so on build it will only generate as many blog pages as the results you set here.
+> IMPORTANT: Each object in the paramLookup array represents a page, so on build it will only generate as many blog pages as the results you return/set here.
