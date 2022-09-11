@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width,initial-scale=1" name="viewport"><link href="https://fonts.googleapis.com" rel="preconnect"><link href="https://fonts.gstatic.com" rel="preconnect" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet"><link href="../../css/main.css" rel="stylesheet"><title>SSG Routes</title></head><body><main><div class="page-con"><div class="page-con__wrapper"><header class="page-con__header"><h1>Welcome to <span class="highlight">SSG</span></h1><p>Get started by editing <span class="code-block">config.ts</span></p></header><section class="info-single page-con__main"><h2><a href="/"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M109.3 288L480 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-370.7 0 73.4-73.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288z"/></svg> Routes</a></h2><div class="markdown"><pre><code class="language-typescript">const routes: Array&lt;RoutesObj&gt; = [
+    {
+        path: &quot;/&quot;,
+        template: `./site/views/templates/home.liquid`,
+        loaders: [homepageLoader],
+    },
+    {
+        path: &quot;/info/:slug&quot;,
+        template: `./site/views/templates/info-single.liquid`,
+        loaders: [infoLoader],
+        paramLookup: infoParamLookup,
+    },
+];
+</code></pre><h2>Explanation</h2><p>A route is effectively a page. It takes in up to 4 parameters: a path, template, loaders and optionally paramLookup. This tells SSG what Liquid template to render on a GET request in dev mode, and on build: what pages to generate.</p><h3>Path</h3><p>This is the value you would enter in your browser to visit the page. In dev mode, Express uses this to generate the routes, and on the build script, this is used to generate the structure of your site. A standard path would look like this: <code>/about-us</code>.</p><p>In some cases, however, you may want a dynamic route that fetches different data based on a parameter in the path. You can define a parameter in your path like so <code>/blogs/:slug</code> (using a semi-colon). This parameter value is passed to your loader functions so you can use it to query blogs depending on the slug (in this example).</p><h3>Template</h3><p>The template key is used to define the Liquid file that the route should use. It is relative to the root of the project.</p><h3>Loaders</h3><p>The loaders key takes an array of loader functions (see type below). A loader function is a function that is run before each route is rendered and is used to fetch data and pass it down into your liquid template, these functions will have the path parameters passed down to them as well.</p><pre><code class="language-typescript">type LoaderFunction = (params?: Request[&quot;params&quot;]) =&gt; Promise&lt;any&gt;;
+
+const optionsLoader: LoaderFunction = async (params) =&gt; {
+    return {
+        options: {
+            title: 'Welcome to &lt;span class=&quot;highlight&quot;&gt;SSG&lt;/span&gt;',
+            subtitle:
+            'Get started by editing &lt;span class=&quot;code-block&quot;&gt;config.ts&lt;/span&gt;',
+        },
+    };
+};
+
+export default optionsLoader;
+</code></pre><p>In your liquid template, you can use the following data like so:</p><pre><code class="language-liquid">&lt;div&gt;
+    &lt;h1&gt;{{ options.title }}&lt;/h1&gt;
+    &lt;p&gt;{{ options.subtitle }}&lt;/p&gt;
+&lt;/div&gt;
+</code></pre><h3>Param Lookup</h3><p>If you have a parameter in your route.path value (<code>/blogs/:slug</code>), then you must include this in the route. It is responsible for supplying all of the possible parameters for the route. The build script uses this so it knows what values to populate in the path parameters, and the dev script uses this to check if the page exists.</p><p>This value can either take a function or an array. This function must always return an array of objects that contains the path parameters you have defined in the path. For example, a path value like so <code>/blogs/:slug</code> would require a paramLookup value of the following:</p><pre><code class="language-typescript">type ParamTableLookup = () =&gt; Promise&lt;Array&lt;{ [key: string]: string }&gt;&gt;;
+
+const blogParamLookup: ParamTableLookup = async () =&gt; {
+    // Here you would query your database and return ALL of the blog's slugs.
+    return [
+        {
+            slug: &quot;my-blog-1&quot;,
+        },
+        {
+            slug: &quot;my-blog-2&quot;,
+        },
+        {
+            slug: &quot;my-blog-3&quot;,
+        },
+    ];
+};
+
+
+const routes: Array&lt;RoutesObj&gt; = [
+    {
+        path: &quot;/blogs/:slug&quot;,
+        template: `./site/views/templates/blog-single.liquid`,
+        loaders: [blogLoader],
+        paramLookup: blogParamLookup,
+    },
+];
+</code></pre><blockquote><p>IMPORTANT: Each object in the paramLookup array represents a page, so on build it will only generate as many blog pages as the results you return/set here.</p></blockquote></div></section><footer class="page-con__footer"><p>version 0.1.0</p></footer></div></div></main></body></html>
