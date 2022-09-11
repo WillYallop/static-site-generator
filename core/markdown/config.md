@@ -1,6 +1,6 @@
 ## Explanation
 
-The config.ts file is the main configuration file for the generator. It is a typescript file that exports a single object with an interface of GeneratorConfig. This file is responsible for setting your routes, globalLoaders, site root, and output directory.
+The config.ts file is the main configuration file for the generator. It is a typescript file that exports a single object with an interface of GeneratorConfig. This file is responsible for setting your routes, globalLoaders, site root, output directory and a site URL.
 
 Global loaders work in the same way as route loader, except they are accessible on every route.
 
@@ -26,6 +26,7 @@ const config: GeneratorConfig = {
     globalLoaders: [optionsLoader],
     outputDir: "dist",
     siteRoot: "site",
+    siteUrl: 'http://localhost:3000' // used to generate the sitemap
 };
 export default config;
 ```

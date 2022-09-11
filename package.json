@@ -1,6 +1,6 @@
 {
   "name": "static-site-generator",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "This is a minimal, but very flexible and powerful static site generator that is built around Express and LiquidJS.",
   "main": "core/build.ts",
   "scripts": {

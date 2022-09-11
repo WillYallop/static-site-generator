@@ -20,4 +20,5 @@ export interface GeneratorConfig {
   globalLoaders?: Array<LoaderFunction>;
   outputDir: string;
   siteRoot: string;
+  siteUrl: string;
 }

@@ -1,3 +1,11 @@
+/*  
+    Example loader file - delete and replace as needed.
+
+    Desc:
+    The infoParamLookup tells the generator all of the page path variations.
+    The infoLoader returns data for the info route to its template to use.
+*/
+
 import fs from "fs-extra";
 import path from "path";
 // Types

@@ -26,5 +26,6 @@ const config: GeneratorConfig = {
   globalLoaders: [optionsLoader],
   outputDir: "dist",
   siteRoot: "site",
+  siteUrl: "http://localhost:3000",
 };
 export default config;

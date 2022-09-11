@@ -30,9 +30,8 @@ npm run build
 
 ## Features in development:
 
-- A sitemap generator (priority)
-- Image optimisation pipeline
+- Picture tag that generate/optimises images and inserts a picture element with multiple next gen file formats.
 
 ## Notes
 
-- This boilerplate also has a Laravel mix setup to compile SCSS and TS. If this is not your prefered build tool, feel free to swap it out for something else.
+- This boilerplate has a Laravel mix setup to compile SCSS and TS. If this is not your prefered build tool, feel free to swap it out for something else.

@@ -1,3 +1,10 @@
+/*  
+    Example loader file - delete and replace as needed.
+
+    Desc:
+    An example globalLoader to pass some shared data to all routes and their templates
+*/
+
 // get the package.json file
 import packageJson from "../../package.json";
 // Types
