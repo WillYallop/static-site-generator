@@ -17,7 +17,12 @@ const config: GeneratorConfig = {
     globalLoaders: [optionsLoader],
     outputDir: &quot;dist&quot;,
     siteRoot: &quot;site&quot;,
-    siteUrl: 'http://localhost:3000' // used to generate the sitemap
+    siteUrl: 'http://localhost:3000', // used to generate the sitemap
+    images: {
+        directory: &quot;./site/images&quot;,
+        outputDir: &quot;images&quot;, // relative to the outputDir
+        quality: 80,
+    },
 };
 export default config;
-</code></pre></div></section><footer class="page-con__footer"><p>version 1.0.0</p></footer></div></div></main></body></html>
+</code></pre></div></section><footer class="page-con__footer"><p>version 1.1.0</p></footer></div></div></main></body></html>
