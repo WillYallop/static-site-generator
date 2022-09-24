@@ -8,13 +8,12 @@ const DEFAULT_QUALITY = 80;
 
 const imageName = (
   src: string,
-  isLocal: boolean,
   mode: "prod" | "dev",
   format: string,
   width?: number
 ) => {
   // strip the file extension
-  const name = src.split(".").slice(0, -1).join(".").split("/").pop();
+  const name = src.split(".").slice(0, -1).join(".").replaceAll("/", "-");
   const widthName = width ? `-${width}` : "";
   if (mode === "prod") {
     return `${uuidv4()}${widthName}.${format}`;
@@ -60,7 +59,7 @@ const optimiseImage = async (
   // optimise
   const optimisedImage = await image.toBuffer();
   // output
-  const name = imageName(src, isLocal, mode, format, width);
+  const name = imageName(src, mode, format, width);
   const outputPath = path.resolve(
     config.outputDir,
     config.images.outputDir,
@@ -72,11 +71,10 @@ const optimiseImage = async (
 
 const checkIfProcessed = async (
   src: string,
-  isLocal: boolean,
   format: string,
   width?: number
 ) => {
-  const name = imageName(src, isLocal, "dev", format, width);
+  const name = imageName(src, "dev", format, width);
   const imgSrc = path.resolve(config.outputDir, config.images.outputDir, name);
   if (fs.existsSync(imgSrc)) return name;
   return false;
@@ -96,8 +94,10 @@ const processImage = async (
     format !== "png"
   )
     return "INVALID FORMAT";
+
   // check if the image is local or extenal
   const isLocal = src.startsWith("http") ? false : true;
+
   // set the image path and check if it exists if local
   if (isLocal) {
     const imgSrc = path.resolve(config.images.directory, src);
@@ -105,7 +105,7 @@ const processImage = async (
   }
   // if dev only optimise if it hasnt been optimised before, otherwise return the optimised image
   if (mode === "dev") {
-    const processed = await checkIfProcessed(src, isLocal, format, width);
+    const processed = await checkIfProcessed(src, format, width);
     if (typeof processed === "string") return processed;
   }
 
