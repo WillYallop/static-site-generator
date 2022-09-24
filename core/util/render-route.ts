@@ -9,6 +9,7 @@ import buildLoaderObj from "./build-loader-obj";
 // Filters
 import registerMarkdownFilter from "../filters/markdown";
 import registerRelativeAssetFilter from "../filters/relative-asset";
+import registerOptimiseImageFilter from "../filters/optimise-image";
 // Types
 import { RoutesObj } from "../types/config";
 
@@ -23,6 +24,7 @@ const engine = new Liquid({
 
 const renderRoute = async (
   route: RoutesObj,
+  mode: "dev" | "prod" = "dev",
   params?: Request["params"]
 ): Promise<string> => {
   const { template, loaders } = route;
@@ -30,6 +32,7 @@ const renderRoute = async (
   // register custom filters
   registerMarkdownFilter(engine);
   registerRelativeAssetFilter(engine, route.path);
+  registerOptimiseImageFilter(engine, route.path, mode);
 
   return await engine.renderFile(
     template,

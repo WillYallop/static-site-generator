@@ -27,5 +27,10 @@ const config: GeneratorConfig = {
   outputDir: "dist",
   siteRoot: "site",
   siteUrl: "http://localhost:3000",
+  images: {
+    directory: "./site/images",
+    outputDir: "images",
+    quality: 80,
+  },
 };
 export default config;

@@ -23,7 +23,7 @@ const buildRoutes = async () => {
         // loop through the paramtable results and build the routes
         for await (const paramTableResult of paramTableResults) {
           const html = await minify(
-            await renderRoute(route, paramTableResult),
+            await renderRoute(route, "prod", paramTableResult),
             {
               collapseWhitespace: true,
               removeComments: true,
@@ -43,7 +43,7 @@ const buildRoutes = async () => {
           continue;
         }
       } else {
-        const html = await minify(await renderRoute(route), {
+        const html = await minify(await renderRoute(route, "prod"), {
           collapseWhitespace: true,
           removeComments: true,
           sortAttributes: true,

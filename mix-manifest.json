@@ -1,5 +1,14 @@
 {
     "/dist/js/index.js": "/dist/js/index.js",
     "/dist/css/main.css": "/dist/css/main.css",
-    "/dist/robots.txt": "/dist/robots.txt"
+    "/dist/images/8dabcb08-18d9-4289-94c1-b8a77f6413b0_1920.jpeg": "/dist/images/8dabcb08-18d9-4289-94c1-b8a77f6413b0_1920.jpeg",
+    "/dist/images/abstract.jpg_1920.jpeg": "/dist/images/abstract.jpg_1920.jpeg",
+    "/dist/images/abstract.jpg_50.jpeg": "/dist/images/abstract.jpg_50.jpeg",
+    "/dist/images/dfa6f472-0f3b-4cab-99cb-3681a394bc82_50.jpeg": "/dist/images/dfa6f472-0f3b-4cab-99cb-3681a394bc82_50.jpeg",
+    "/dist/index.html": "/dist/index.html",
+    "/dist/info/config/index.html": "/dist/info/config/index.html",
+    "/dist/info/routes/index.html": "/dist/info/routes/index.html",
+    "/dist/info/tags-and-filters/index.html": "/dist/info/tags-and-filters/index.html",
+    "/dist/robots.txt": "/dist/robots.txt",
+    "/dist/sitemap.xml": "/dist/sitemap.xml"
 }

@@ -1,5 +1,5 @@
 import { Liquid } from "liquidjs";
-import relativePath from "./helper/relative_path";
+import relativePath from "./helper/relative-path";
 
 export const registerRelativeAssetFilter = (
   engine: Liquid,

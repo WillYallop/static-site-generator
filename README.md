@@ -28,10 +28,6 @@ npm run build
 - [Tags & Filters](core/markdown/tags-and-filters.md)
 
 
-## Features in development:
-
-- Picture tag that generate/optimises images and inserts a picture element with multiple next gen file formats.
-
 ## Notes
 
 - This boilerplate has a Laravel mix setup to compile SCSS and TS. If this is not your prefered build tool, feel free to swap it out for something else.

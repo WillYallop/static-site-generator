@@ -21,4 +21,10 @@ export interface GeneratorConfig {
   outputDir: string;
   siteRoot: string;
   siteUrl: string;
+
+  images: {
+    directory: string;
+    outputDir: string;
+    quality?: number;
+  };
 }

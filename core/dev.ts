@@ -19,7 +19,7 @@ app.use(morgan("dev"));
 config.routes.forEach((route: RoutesObj) => {
   app.get(route.path, async (req, res) => {
     const pageFound = await checkParamMatch(route, req.params);
-    if (pageFound) res.send(await renderRoute(route, req.params));
+    if (pageFound) res.send(await renderRoute(route, "dev", req.params));
     else res.send("404");
   });
 });
